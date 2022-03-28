@@ -25,6 +25,8 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
         this.finePerDay = finePerDay;
         this.description = description;
+        this.available = true;
+        this.reserved = false;
     }
     public Book(){}
 
