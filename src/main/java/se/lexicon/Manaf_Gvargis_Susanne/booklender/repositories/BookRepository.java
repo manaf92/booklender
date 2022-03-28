@@ -8,4 +8,7 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book,Integer> {
+    List<Book> findByAvailable(boolean status);
+    List<Book> findByReserved(boolean status);
+    List<Book> findByTitle(String title);
 }
