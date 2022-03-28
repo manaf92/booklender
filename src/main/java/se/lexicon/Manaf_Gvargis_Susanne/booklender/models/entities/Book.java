@@ -1,5 +1,7 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities;
 
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.repositories.LibraryUserRepository;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -38,9 +40,7 @@ public class Book {
         this.title = title;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
+    public boolean isAvailable() {return available;}
 
     public void setAvailable(boolean available) {
         this.available = available;
