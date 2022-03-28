@@ -1,4 +1,4 @@
-package se.lexicon.Manaf_Gvargis_Susanne.booklender.models;
+package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

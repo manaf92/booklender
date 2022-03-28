@@ -1,12 +1,23 @@
-package se.lexicon.Manaf_Gvargis_Susanne.booklender.models;
+package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities;
 
+
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
 public class Loan {
 
+    @Id
+    @Column(name = "loan_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private LibraryUser loanTaker;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id")
     private Book book;
     private LocalDate loanDate;
     private boolean loanEnded;

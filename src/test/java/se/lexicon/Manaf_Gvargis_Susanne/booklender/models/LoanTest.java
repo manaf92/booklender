@@ -2,6 +2,9 @@ package se.lexicon.Manaf_Gvargis_Susanne.booklender.models;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Book;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.LibraryUser;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Loan;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
