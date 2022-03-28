@@ -1,6 +1,5 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities;
 
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.repositories.LibraryUserRepository;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
