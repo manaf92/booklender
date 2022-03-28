@@ -22,7 +22,7 @@ class LoanTest {
 
     @Test
     void getLoanTaker() {
-
+        // assertArrayEquals("John",  loan.getLoanTaker());
     }
 
     @Test

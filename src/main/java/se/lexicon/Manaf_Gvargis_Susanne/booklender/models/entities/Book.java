@@ -1,10 +1,15 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
     private int bookId;
     private String title;
     private boolean available;
