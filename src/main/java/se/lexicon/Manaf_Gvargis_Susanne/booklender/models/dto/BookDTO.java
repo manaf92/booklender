@@ -26,6 +26,10 @@ public class BookDTO {
         return bookId;
     }
 
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -72,5 +76,18 @@ public class BookDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "BookDTO{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", available=" + available +
+                ", reserved=" + reserved +
+                ", maxLoanDays=" + maxLoanDays +
+                ", finePerDay=" + finePerDay +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
