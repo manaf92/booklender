@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BooklenderApplication {
+public class BookLenderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BooklenderApplication.class, args);
+		SpringApplication.run(BookLenderApplication.class, args);
 	}
-
 }
