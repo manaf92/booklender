@@ -38,7 +38,7 @@ class LibraryUserRepositoryTest {
     @Test
     void findByEmail() {
         String ex = "test1";
-        String ac = libraryUserRepository.findByEmail("test1@mail.se").getName();
+        String ac = libraryUserRepository.findByEmail("test1@mail.se").get().getName();
         assertEquals(ex,ac);
     }
 }

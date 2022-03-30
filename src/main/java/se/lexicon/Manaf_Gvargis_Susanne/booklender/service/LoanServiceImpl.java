@@ -3,6 +3,7 @@ package se.lexicon.Manaf_Gvargis_Susanne.booklender.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.LoanDTO;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Book;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Loan;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.repositories.LoanRepository;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.service.converter.EntityDTOConverter;
@@ -10,6 +11,7 @@ import se.lexicon.Manaf_Gvargis_Susanne.booklender.service.interfaces.LoanServic
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -44,8 +46,16 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public LoanDTO update(LoanDTO loanDTO) {
-        Loan loan = converter.DTOToLoan(loanDTO);
-        return converter.loanToDTO(repository.save(loan));
+        if (loanDTO == null) throw new  IllegalArgumentException("loanDTO was null");
+        if (loanDTO.getLoanId() == 0) throw new  IllegalArgumentException("loanDTO.getLoanId() was 0");
+        Optional<Loan> found = repository.findById(loanDTO.getLoanId());
+        if (!found.isPresent()) throw new  IllegalArgumentException("the object was not found");
+        Loan loan = found.get();
+        loan.setLoanEnded(loanDTO.isLoanEnded());
+        loan.setLoanDate(loanDTO.getLoanDate());
+        loan.setLoanTaker(converter.DTOToLibraryUser(loanDTO.getLoanTaker()));
+        loan.setBook(converter.DTOToBook(loanDTO.getBook()));
+        return converter.loanToDTO(loan);
     }
 
     @Override

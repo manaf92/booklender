@@ -59,6 +59,6 @@ public class LibraryUserServiceImpl implements LibraryUserService {
     }
     @Override
     public LibraryUserDTO findByEmail(String email) {
-        return converter.libraryUserToDTO(repository.findByEmail(email));
+        return converter.libraryUserToDTO(repository.findByEmail(email).get());
     }
 }
