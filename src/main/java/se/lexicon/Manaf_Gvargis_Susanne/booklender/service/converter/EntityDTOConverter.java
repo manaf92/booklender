@@ -1,12 +1,8 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.service.converter;
 
 import org.springframework.stereotype.Component;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.BookDTO;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.LibraryUserDTO;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.LoanDTO;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Book;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.LibraryUser;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Loan;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.*;
+import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.*;
 
 import javax.transaction.Transactional;
 

@@ -1,12 +1,20 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class LibraryUserDTO {
 
     private int userId;
+    @FutureOrPresent(message = "regeDate should be in present")
     private LocalDate regDate;
+
+    @NotBlank(message = "Name is mandatory.")
+    @Size(min = 2, max = 30, message = "Need to have between 2 and 30 letters")
     private String name;
+
+    @NotBlank(message = "Email is mandatory.")
+    @Email(message = "Email should be valid")
     private String email;
 
     public LibraryUserDTO(int userId, LocalDate regDate, String name, String email) {

@@ -1,14 +1,24 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto;
 
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class BookDTO {
     private int bookId;
+    @NotBlank(message = "Title can not be empty.")
+    @Size(min = 2, max = 100, message = "Need to have between 2 and 100 letters")
     private String title;
 
     private boolean available;
     private boolean reserved;
+    @NotNull
+    @Min(value = 3,message = "maxLoanDays should be grater than 3")
+    @Max(value = 100, message = "maxLoanDays should be less than 100")
     private int maxLoanDays;
+
+    @NotNull
+    @Min(value = 1,message = "finePerDay should be between 1 and 50")
+    @Max(value = 50, message = "finePerDay should be between 1 and 50")
     private BigDecimal finePerDay;
 
     @Size(max = 1500, message = "Need to be less than 1500")

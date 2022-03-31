@@ -2,13 +2,14 @@ package se.lexicon.Manaf_Gvargis_Susanne.booklender.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto.LoanDTO;
-import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Book;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.models.entities.Loan;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.repositories.LoanRepository;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.service.converter.EntityDTOConverter;
 import se.lexicon.Manaf_Gvargis_Susanne.booklender.service.interfaces.LoanService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public LoanDTO create(LoanDTO loanDTO) {
+    public LoanDTO create( LoanDTO loanDTO) {
         Loan loan = converter.DTOToLoan(loanDTO);
         return converter.loanToDTO(repository.save(loan));
     }
@@ -88,6 +89,13 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public List<LoanDTO> findByLoanEnded(boolean loanEnded) {
         List<Loan> loanList = repository.findByLoanEnded(loanEnded);
+        List<LoanDTO> loanDTOList = new ArrayList<>();
+        loanList.forEach(loan -> loanDTOList.add(converter.loanToDTO(loan)));
+        return loanDTOList;
+    }
+
+    public List<LoanDTO> findByLoanDate(LocalDate loanDate) {
+        List<Loan> loanList = repository.findByLoanDate(loanDate);
         List<LoanDTO> loanDTOList = new ArrayList<>();
         loanList.forEach(loan -> loanDTOList.add(converter.loanToDTO(loan)));
         return loanDTOList;

@@ -1,15 +1,25 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Validated
 public class LoanDTO {
 
     private Long loanId;
+
+    @NotNull(message = "loanTaker should not be null")
     private LibraryUserDTO loanTaker;
 
     @NotNull(message = "Book must be specified.")
     private BookDTO book;
+
+    @FutureOrPresent(message = "loanDate must be in present")
     private LocalDate loanDate;
+    @NotNull(message = "loanEnded is required")
     private boolean loanEnded;
 
     public LoanDTO(Long loanId, LibraryUserDTO loanTaker, BookDTO book, LocalDate loanDate, boolean loanEnded) {

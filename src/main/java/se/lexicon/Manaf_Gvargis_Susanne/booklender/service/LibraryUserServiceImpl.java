@@ -25,6 +25,9 @@ public class LibraryUserServiceImpl implements LibraryUserService {
 
     @Override
     public LibraryUserDTO create(LibraryUserDTO libraryUserDTO) {
+        if(libraryUserDTO == null) throw new IllegalArgumentException("libraryUserDTO was null");
+        if (repository.findByEmail(libraryUserDTO.getEmail()).isPresent()) throw new IllegalArgumentException("Email already exist");
+        if(libraryUserDTO == null) throw new IllegalArgumentException("libraryUserDTO was null");
         LibraryUser libraryUser = converter.DTOToLibraryUser(libraryUserDTO);
         return converter.libraryUserToDTO(repository.save(libraryUser));
     }
