@@ -1,15 +1,18 @@
 package se.lexicon.Manaf_Gvargis_Susanne.booklender.models.dto;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class BookDTO {
     private int bookId;
     private String title;
+
     private boolean available;
     private boolean reserved;
     private int maxLoanDays;
     private BigDecimal finePerDay;
+
+    @Size(max = 1500, message = "Need to be less than 1500")
+    @NotBlank(message = "Description is mandatory.")
     private String description;
 
     public BookDTO(int bookId, String title, int maxLoanDays, BigDecimal finePerDay, String description) {

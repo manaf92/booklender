@@ -6,6 +6,8 @@ public class LoanDTO {
 
     private Long loanId;
     private LibraryUserDTO loanTaker;
+
+    @NotNull(message = "Book must be specified.")
     private BookDTO book;
     private LocalDate loanDate;
     private boolean loanEnded;

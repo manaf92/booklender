@@ -10,6 +10,7 @@ import se.lexicon.Manaf_Gvargis_Susanne.booklender.service.interfaces.LibraryUse
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibraryUserServiceImpl implements LibraryUserService {
@@ -43,8 +44,17 @@ public class LibraryUserServiceImpl implements LibraryUserService {
 
     @Override
     public LibraryUserDTO update(LibraryUserDTO libraryUserDTO) {
-        LibraryUser user = converter.DTOToLibraryUser(libraryUserDTO);
-        return converter.libraryUserToDTO(repository.save(user));
+        if (libraryUserDTO.getUserId()!=repository.findByEmail(libraryUserDTO.getEmail()).get().getUserId()) throw new IllegalArgumentException("email already used");
+        if(libraryUserDTO == null) throw new IllegalArgumentException("libraryUserDTO is null.");
+        if (libraryUserDTO.getUserId() == 0) throw new IllegalArgumentException("Library user id was 0");
+        Optional<LibraryUser> found = repository.findById(libraryUserDTO.getUserId());
+        if (!found.isPresent()) throw new IllegalArgumentException("Object not found.");
+        LibraryUser libraryUser = found.get();
+        libraryUser.setEmail(libraryUserDTO.getEmail());
+        libraryUser.setName(libraryUserDTO.getName());
+        libraryUser.setRegDate(libraryUserDTO.getRegDate());
+
+        return converter.libraryUserToDTO(libraryUser);
     }
 
     @Override
